@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengumuman Kelulusan 2024/2025</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      background: url('background-pendidikan.jpg') no-repeat center center fixed;
+      background-size: cover;
+      text-align: center;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px 20px;
+      border-radius: 16px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+    .logo {
+      width: 100px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    h1 {
+      color: #1d4ed8;
+    }
+    p {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    input[type="text"] {
+      width: 80%;
+      padding: 12px 14px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      border: 2px solid #1d4ed8;
+      border-radius: 12px;
+      font-size: 1em;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      outline-color: #2563eb;
+    }
+    button {
+      padding: 10px 24px;
+      border: none;
+      background-color: #2563eb;
+      color: white;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1d4ed8;
+    }
+    .result {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.1em;
+      padding: 16px;
+      border: 2px solid #28a745;
+      border-radius: 8px;
+      background-color: #e6f9ec;
+      color: #155724;
+    }
+    .countdown {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 2em;
+      font-weight: bold;
+      color: #dc2626;
+      margin-top: 10px;
+      background-color: #fef2f2;
+      border: 2px solid #dc2626;
+      border-radius: 10px;
+      padding: 10px 20px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="logo-sekolah.png" alt="Logo Sekolah" class="logo">
+    <h1>Pengumuman Kelulusan</h1>
+    <p>Tahun Ajaran 2024/2025</p>
+    <div class="countdown" id="countdown"></div>
+    <div id="app">
+      <div id="form">
+        <input type="text" id="noUjian" placeholder="Masukkan Nomor Ujian">
+        <button onclick="cekKelulusan()">Cek Kelulusan</button>
+      </div>
+      <div class="result" id="result"></div>
+    </div>
+  </div>
+
+  <script>
+    const data = {
+      "18-200-001": "Ahmad Arsyad Maulana",
+      "18-200-002": "Aisyah Yanuwardhani N F",
+      "18-200-003": "Al Khalifi Alzam Bandono",
+      "18-200-004": "Argha Afif Alfaro Gavriel",
+      "18-200-005": "Ayanna Artisya Marsya",
+      "18-200-006": "Ayundha Citra Kirana",
+      "18-200-007": "Barnabas Satria Aditthana U",
+      "18-200-008": "Brigitha Lixy Checita Natixxa",
+      "18-200-009": "Darielle Abrar Farras P",
+      "18-200-010": "Dewangga Devaldi Day",
+      "18-200-011": "Dewi Anggraini",
+      "18-200-012": "Diandra Ageng Mahardika",
+      "18-200-013": "Evelyn Adara Fredella W",
+      "18-200-014": "Fabian Arinto Setiawan",
+      "18-200-015": "Felicia Areta Sharon Callysta",
+      "18-200-016": "Fian Muhammad Al Fayyadh",
+      "18-200-017": "Fidhela Airin Aviza Devi",
+      "18-200-018": "Fortissia Atqia Amantissima",
+      "18-200-019": "Gelegar Krisna Putra Nugraha",
+      "18-200-020": "Ghaida Leticha Asmalya",
+      "18-200-021": "Giofany Eleanore Cyrilla P",
+      "18-200-022": "Kania Putri Sumawan",
+      "18-200-023": "M. Gifano Ghani Firmansyah",
+      "18-200-024": "Kimiyoji Prabuadi",
+      "18-200-025": "Muhammad Kenzie Ariq A",
+      "18-200-026": "Naima Kezia Setiawan",
+      "18-200-027": "Novenda Ixchel Zahra",
+      "18-200-028": "Panji Saputra",
+      "18-200-029": "Prayata Javas Nararya Prasetya",
+      "18-200-030": "Rafael Rizki Rajendra",
+      "18-200-031": "Ranu Haikal Ardanka",
+      "18-200-032": "Ranumita Aira Nurfi",
+      "18-200-033": "Rayyan Azka Faeyzi",
+      "18-200-034": "Salsabila Adiva Putri D",
+      "18-200-035": "Sandrina Zulfa Naraya",
+      "18-200-036": "Satria Yudha Dhanu Widjaja",
+      "18-200-037": "Shinta Dewi Kartikasari",
+      "18-200-038": "Sultan Athar El Shaarawy",
+      "18-200-039": "Syahrazad Adwa Fajria Annajma",
+      "18-200-040": "Yusuf Amirriansyah",
+      "18-200-041": "Zhelomita Arzha Syahputri H S",
+      "18-200-042": "Adellia Nasya Andaralesha",
+      "18-200-043": "Wanodya Sekar Pembayun",
+      "18-200-044": "Muhammad Fauzan",
+      "18-200-045": "Aretha Rainka"
+    };
+
+    const waktuBuka = new Date("2025-06-02T13:00:00+07:00");
+
+    function cekKelulusan() {
+      const sekarang = new Date();
+      const resultDiv = document.getElementById("result");
+
+      if (sekarang < waktuBuka) {
+        resultDiv.innerText = "Sabar Dulu ;)";
+        resultDiv.style.display = "block";
+        return;
+      }
+
+      const noUjian = document.getElementById("noUjian").value.trim();
+      const nama = data[noUjian];
+
+      if (nama) {
+        resultDiv.innerText = `${nama} dinyatakan LULUS.`;
+      } else {
+        resultDiv.innerText = "Nomor ujian tidak ditemukan.";
+      }
+      resultDiv.style.display = "block";
+    }
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = waktuBuka - now;
+
+      const countdown = document.getElementById("countdown");
+
+      if (distance > 0) {
+        const hours = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+        const minutes = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+        const seconds = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+
+        countdown.innerText = `${hours}:${minutes}:${seconds}`;
+      } else {
+        countdown.innerText = "Pengumuman sudah tersedia.";
+      }
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
