@@ -144,14 +144,14 @@
       "18-002-045": "Aretha Rainka"
     };
 
-    const waktuBuka = new Date("2025-06-02T12:30:00+07:00");
+    const waktuBuka = new Date("2025-06-02T13:00:00+07:00");
 
     function cekKelulusan() {
       const sekarang = new Date();
       const resultDiv = document.getElementById("result");
 
       if (sekarang < waktuBuka) {
-        resultDiv.innerText = "Sabar Dulu ;) Sebentar lagiii hehehe";
+        resultDiv.innerText = "Cie Mau lulus :D";
         resultDiv.style.display = "block";
         return;
       }
@@ -180,7 +180,7 @@
 
         countdown.innerText = `${hours}:${minutes}:${seconds}`;
       } else {
-        countdown.innerText = "Pengumuman sudah tersedia.";
+        countdown.innerText = "Bismillah dulu sebelum konfirmasi 😉";
       }
     }
 
